@@ -2,6 +2,8 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const app = express()
 const conn = require('./db/conn')
+const jwt = require('jsonwebtoken')
+const SECRET = "costumizeL2802"
 
 
 app.engine('handlebars',exphbs.engine())
@@ -12,7 +14,8 @@ app.use(express.urlencoded({
 }))
 
 
-app.use(express.static('public'))
+app.use(express.static("public"));
+
 
 
 //Routes
@@ -20,18 +23,19 @@ app.get('/',(req,res)=>{
     res.render('home')
 })
 const historyRoutes = require('./routes/historyRoutes')
-const accountRoutes = require('./routes/accountRoutes')
 
-app.use('/history', historyRoutes)
-app.use('/account', accountRoutes)
+
+app.use('/match', historyRoutes)
+
 
 
 
 
 //models
 
-const Account = require('./models/account')
+
 const History = require('./models/history')
+const Player = require('./models/player')
 
 
 
@@ -39,7 +43,7 @@ const History = require('./models/history')
 
 //Conection
 conn.sync({
-    //force:true
+    
 }).then(
     app.listen(3000,()=>{
         console.log('banco conectado')
@@ -51,3 +55,4 @@ conn.sync({
 ).catch((err)=>{
     console.log(err)
 })
+
