@@ -1,0 +1,22 @@
+{{#if randomConfirm}}
+<div class="card">
+<h1 id="espaco2">Duo 1: {{duo1}}</h1>
+<h1 id="espaco2">Duo 2: {{duo2}} </h1>
+</div>
+
+<a class="formulario" id="enviar" href="/match/rolls/{{player1}}/{{player2}}/{{player3}}/{{player4}}">Roletar Personagens</a>
+
+{{else}}
+
+<form class="form" action="/match/2x2" method="post">
+
+<p id="espaco"><input class="formulario" type="text" name="player1" placeholder="Jogador 1"></p>
+<p id="espaco"><input  class="formulario" type="text" name="player2" placeholder="Jogador 2"></p>
+<p id="espaco"> <input  class="formulario" type="text" name="player3" placeholder="Jogador 3"></p>
+<p id="espaco"><input  class="formulario" type="text" name="player4" placeholder="Jogador 4"></p>
+
+<h1 id="homeLinks6">Lista de Jogadores existentes: {{playersNick}}</h1>
+<input   class="formulario"  id="enviar" type="submit" value="Confirmar">
+
+</form>
+{{/if}}
